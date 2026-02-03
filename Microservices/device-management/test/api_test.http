@@ -1,0 +1,51 @@
+### Get token from Signing service first
+POST http://localhost:8000/users/auth
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "password123"
+}
+
+### Add a new device (requires token from above)
+POST http://localhost:8001/devices/
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "device_id": "device_001",
+  "name": "Temperature Sensor 1",
+  "device_type": "sensor",
+  "status": "online",
+  "location": "Room A",
+  "temperature": 25.5
+}
+
+### Get all devices (requires token)
+GET http://localhost:8001/devices/
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Get device by ID (requires token)
+GET http://localhost:8001/devices/device_001
+Authorization: Bearer YOUR_TOKEN_HERE
+
+### Update device (requires token)
+PUT http://localhost:8001/devices/device_001
+Content-Type: application/json
+Authorization: Bearer YOUR_TOKEN_HERE
+
+{
+  "device_id": "device_001",
+  "status": "online",
+  "temperature": 26.0
+}
+
+### Receive data from IoT device (no auth required)
+POST http://localhost:8001/devices/device_001/data
+Content-Type: application/json
+
+{
+  "device_id": "device_001",
+  "temperature": 27.5,
+  "status": "online"
+}

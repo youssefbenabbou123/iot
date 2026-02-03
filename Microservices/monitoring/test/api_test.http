@@ -1,0 +1,22 @@
+### Get all monitoring data
+GET http://localhost:8002/monitoring/data?limit=10
+
+### Get data for specific device
+GET http://localhost:8002/monitoring/data/device_001?limit=10
+
+### Get latest data for device
+GET http://localhost:8002/monitoring/data/device_001/latest
+
+### Get data by time range
+GET http://localhost:8002/monitoring/data/device_001/range?start_time=2025-01-28T00:00:00Z&end_time=2025-01-28T23:59:59Z
+
+### Manually add device data (usually comes from RabbitMQ)
+POST http://localhost:8002/monitoring/data
+Content-Type: application/json
+
+{
+  "device_id": "device_001",
+  "temperature": 25.5,
+  "status": "online",
+  "timestamp": "2025-01-28T10:00:00Z"
+}

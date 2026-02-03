@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API Gateway - Monitoring Cloud IoT 2025</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        h2 {
+            color: #555;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            min-height: 100px;
+            font-family: monospace;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .error {
+            border-left-color: #f44336;
+            background-color: #ffebee;
+        }
+        .link {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 10px 5px;
+            display: inline-block;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+        .token-input {
+            font-family: monospace;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 Test API Gateway - Monitoring Cloud IoT 2025</h1>
+
+    <!-- Links to Swagger Docs -->
+    <div class="container">
+        <h2>📚 Documentation Swagger</h2>
+        <a href="http://localhost:8080/docs-signing" target="_blank" class="link">🔐 Signing API Docs</a>
+        <a href="http://localhost:8080/docs-devices" target="_blank" class="link">📱 Device Management API Docs</a>
+        <a href="http://localhost:8080/docs-monitoring" target="_blank" class="link">📊 Monitoring API Docs</a>
+    </div>
+
+    <!-- Health Check -->
+    <div class="container">
+        <h2>🏥 Health Check</h2>
+        <button onclick="testHealth()">Tester Gateway</button>
+        <div id="healthResult" class="result" style="display:none;"></div>
+    </div>
+
+    <!-- Auth -->
+    <div class="container">
+        <h2>🔐 Authentification</h2>
+        <input type="email" id="email" placeholder="Email" value="gateway.user@example.com">
+        <input type="password" id="password" placeholder="Password" value="password123">
+        <button onclick="register()">S'inscrire</button>
+        <button onclick="login()">Se connecter</button>
+        <div id="authResult" class="result" style="display:none;"></div>
+    </div>
+
+    <!-- Token -->
+    <div class="container">
+        <h2>🎫 Token JWT</h2>
+        <input type="text" id="token" class="token-input" placeholder="Colle ton token ici" 
+               value="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnYXRld2F5LnVzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjpmYWxzZSwiZXhwIjoxNzY5NjM3NjIxLCJpYXQiOjE3Njk2MzU4MjF9.UvY_Nx5oaEIqLOhDbsIeuCM1vRfXs9nRJo2QJdC4fk0">
+        <button onclick="copyToken()">Copier depuis Login</button>
+    </div>
+
+    <!-- Devices -->
+    <div class="container">
+        <h2>📱 Device Management</h2>
+        <button onclick="getDevices()">Liste des Devices</button>
+        <button onclick="getDeviceById()">Device par ID</button>
+        <div style="margin-top: 15px;">
+            <h3>Créer un Device</h3>
+            <input type="text" id="deviceId" placeholder="Device ID" value="device_001">
+            <input type="text" id="deviceName" placeholder="Nom" value="Temperature Sensor 1">
+            <input type="text" id="deviceType" placeholder="Type" value="sensor">
+            <input type="text" id="deviceStatus" placeholder="Status" value="online">
+            <input type="text" id="deviceLocation" placeholder="Location" value="Room A">
+            <input type="number" id="deviceTemp" placeholder="Temperature" value="25.5">
+            <button onclick="createDevice()">Créer Device</button>
+        </div>
+        <div id="deviceResult" class="result" style="display:none;"></div>
+    </div>
+
+    <!-- Monitoring -->
+    <div class="container">
+        <h2>📊 Monitoring</h2>
+        <button onclick="getMonitoringData()">Données Monitoring</button>
+        <div id="monitoringResult" class="result" style="display:none;"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:8080';
+
+        function showResult(elementId, data, isError = false) {
+            const resultDiv = document.getElementById(elementId);
+            resultDiv.style.display = 'block';
+            resultDiv.className = 'result' + (isError ? ' error' : '');
+            resultDiv.textContent = JSON.stringify(data, null, 2);
+        }
+
+        async function testHealth() {
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                const data = await response.json();
+                showResult('healthResult', data);
+            } catch (error) {
+                showResult('healthResult', { error: error.message }, true);
+            }
+        }
+
+        async function register() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch(`${API_BASE}/users/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                showResult('authResult', data, !response.ok);
+            } catch (error) {
+                showResult('authResult', { error: error.message }, true);
+            }
+        }
+
+        async function login() {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch(`${API_BASE}/users/auth`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                if (data.token) {
+                    document.getElementById('token').value = data.token;
+                }
+                showResult('authResult', data, !response.ok);
+            } catch (error) {
+                showResult('authResult', { error: error.message }, true);
+            }
+        }
+
+        function copyToken() {
+            const authResult = document.getElementById('authResult').textContent;
+            try {
+                const data = JSON.parse(authResult);
+                if (data.token) {
+                    document.getElementById('token').value = data.token;
+                    alert('Token copié !');
+                }
+            } catch (e) {
+                alert('Aucun token trouvé. Fais d\'abord un login.');
+            }
+        }
+
+        async function getDevices() {
+            const token = document.getElementById('token').value;
+            if (!token) {
+                alert('Token requis !');
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE}/devices/`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                showResult('deviceResult', data, !response.ok);
+            } catch (error) {
+                showResult('deviceResult', { error: error.message }, true);
+            }
+        }
+
+        async function getDeviceById() {
+            const token = document.getElementById('token').value;
+            const deviceId = document.getElementById('deviceId').value || 'device_001';
+            if (!token) {
+                alert('Token requis !');
+                return;
+            }
+            try {
+                const response = await fetch(`${API_BASE}/devices/${deviceId}`, {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                const data = await response.json();
+                showResult('deviceResult', data, !response.ok);
+            } catch (error) {
+                showResult('deviceResult', { error: error.message }, true);
+            }
+        }
+
+        async function createDevice() {
+            const token = document.getElementById('token').value;
+            if (!token) {
+                alert('Token requis !');
+                return;
+            }
+            const deviceData = {
+                device_id: document.getElementById('deviceId').value,
+                name: document.getElementById('deviceName').value,
+                device_type: document.getElementById('deviceType').value,
+                status: document.getElementById('deviceStatus').value,
+                location: document.getElementById('deviceLocation').value,
+                temperature: parseFloat(document.getElementById('deviceTemp').value)
+            };
+            try {
+                const response = await fetch(`${API_BASE}/devices/`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(deviceData)
+                });
+                const data = await response.json();
+                showResult('deviceResult', data, !response.ok);
+            } catch (error) {
+                showResult('deviceResult', { error: error.message }, true);
+            }
+        }
+
+        async function getMonitoringData() {
+            try {
+                const response = await fetch(`${API_BASE}/monitoring/data`);
+                const data = await response.json();
+                showResult('monitoringResult', data, !response.ok);
+            } catch (error) {
+                showResult('monitoringResult', { error: error.message }, true);
+            }
+        }
+    </script>
+</body>
+</html>

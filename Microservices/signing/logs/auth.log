@@ -1,0 +1,178 @@
+2026-01-28 17:07:54,422-INFO-user register ok user@example.com
+2026-01-28 17:08:13,309-INFO-Authentication for user : user@example.com
+2026-01-28 17:30:36,887-INFO-Authentication for user : user@example.com
+2026-01-28 18:07:33,947-ERROR-Authentication failed for user : user2@example.com
+2026-01-28 18:09:04,195-INFO-Authentication for user : user@example.com
+2026-01-28 18:14:01,569-INFO-user register ok mon.nouveau.user@test.com
+2026-01-28 18:17:13,241-INFO-Authentication for user : mon.nouveau.user@test.com
+2026-01-28 19:46:48,694-INFO-Redis connected at localhost:6379
+2026-01-28 19:47:55,754-INFO-Redis connected at localhost:6379
+2026-01-28 21:00:41,222-INFO-user register ok user2@example.com
+2026-01-28 21:01:56,915-INFO-Authetication for user ; user2@example.com
+2026-01-28 21:01:23,688-ERROR-Authentication faild fro user : user3@example.com
+2026-01-28 21:03:46,475-INFO-user register ok user4@example.com
+2026-01-28 21:04:48,612-ERROR-Authentication faild fro user : user@example.com
+2026-01-28 21:04:57,824-INFO-Authetication for user ; user4@example.com
+2026-01-28 21:27:26,183-INFO-user register ok gateway.user@example.com
+2026-01-28 21:27:56,291-INFO-Authetication for user ; gateway.user@example.com
+2026-01-28 21:30:21,744-INFO-Authetication for user ; gateway.user@example.com
+2026-01-28 22:33:21,910-ERROR-Authentication faild fro user : end.device@example.com
+2026-01-28 22:36:29,924-ERROR-Authentication faild fro user : end.device@example.com
+2026-01-28 22:36:30,003-INFO-user register ok end.device@example.com
+2026-01-28 22:36:30,066-INFO-Authetication for user ; end.device@example.com
+2026-01-28 22:41:15,266-INFO-Authetication for user ; end.device@example.com
+2026-01-28 22:45:09,320-INFO-Authetication for user ; end.device@example.com
+2026-01-28 22:50:58,695-INFO-Authetication for user ; end.device@example.com
+2026-01-28 23:24:48,977-INFO-Authetication for user ; gateway.user@example.com
+2026-01-28 23:25:43,190-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 00:36:16,756-INFO-Authetication for user ; end.device@example.com
+2026-01-29 00:40:19,488-INFO-Authetication for user ; end.device@example.com
+2026-01-29 00:40:47,196-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 00:41:00,955-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 00:47:26,425-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 00:48:45,869-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 00:52:44,493-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 00:55:58,538-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:11:41,224-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:17:15,146-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:17:23,462-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:24:43,631-INFO-user register ok houariyassir8@gmail.com
+2026-01-29 01:24:56,996-ERROR-registration faild for user houariyassir8@gmail.com
+2026-01-29 01:28:23,113-ERROR-Authentication faild fro user : yassirhouari8@gmail.com
+2026-01-29 01:28:31,347-ERROR-Authentication faild fro user : yassirhouari8@gmail.com
+2026-01-29 01:28:55,593-INFO-Authetication for user ; houariyassir8@gmail.com
+2026-01-29 01:37:09,952-INFO-Authetication for user ; houariyassir8@gmail.com
+2026-01-29 01:38:43,528-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:41:33,599-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:42:40,962-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:46:39,346-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:47:46,875-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:49:20,161-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:52:23,023-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:54:36,780-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:54:57,770-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 01:55:38,660-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 02:00:04,533-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 02:00:58,872-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 02:02:18,589-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 02:06:57,079-INFO-Authetication for user ; end.device@example.com
+2026-01-29 02:08:29,431-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 02:33:33,546-INFO-Authetication for user ; end.device@example.com
+2026-01-29 02:43:07,147-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 02:43:42,715-INFO-Authetication for user ; houariyassir8@gmail.com
+2026-01-29 02:56:28,995-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:04:14,943-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:25:15,652-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:32:48,965-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:44:44,441-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:49:51,319-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:50:33,278-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:53:30,980-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 03:54:55,604-INFO-Authetication for user ; houariyassir8@gmail.com
+2026-01-29 03:56:52,496-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 04:04:20,244-INFO-Authetication for user ; gateway.user@example.com
+2026-01-29 05:09:32,074-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 05:09:50,160-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 14:49:57,976-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 14:57:38,734-ERROR-registration failed for user houariyassir8@gmail.com (email already exists)
+2026-01-29 14:57:57,908-INFO-Authentication for user: houariyassir8@gmail.com
+2026-01-29 15:31:26,476-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 15:31:46,152-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 15:41:46,657-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 16:08:12,270-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 21:45:58,652-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 21:46:56,697-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 21:58:16,625-INFO-Authentication for user: gateway.user@example.com
+2026-01-29 22:09:35,319-INFO-Authentication for user: houariyassir8@gmail.com
+2026-01-29 22:22:38,691-INFO-Authentication for user: houariyassir8@gmail.com
+2026-01-30 00:30:44,503-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 00:31:21,321-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:07:52,897-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:08:00,318-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:19:10,097-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:19:20,207-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:21:33,206-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:27:00,056-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:27:08,399-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:32:48,008-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:38:11,441-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 01:44:45,457-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 02:04:09,529-INFO-Authentication for user: end.device@example.com
+2026-01-30 02:06:08,055-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 02:53:15,049-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 02:53:20,942-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:00:52,289-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:08:09,810-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:14:19,925-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:20:18,163-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:23:13,124-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:23:20,276-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:23:24,774-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:23:42,442-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:27:38,244-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:27:45,142-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:30:48,122-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:30:57,729-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:32:28,900-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:35:55,206-INFO-Authentication for user: end.device@example.com
+2026-01-30 03:40:09,789-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:40:13,368-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:42:47,790-INFO-Authentication for user: end.device@example.com
+2026-01-30 03:43:15,432-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:50:18,439-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:50:33,363-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:55:22,586-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 03:59:01,307-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:28:07,668-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:28:23,018-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:28:49,735-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:42:36,501-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:42:53,304-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:53:53,968-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 04:54:09,730-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:03:21,813-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:23:00,755-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:28:24,322-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:36:49,314-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:36:58,090-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:40:13,209-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:49:29,002-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 05:53:07,003-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 06:15:18,686-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 06:15:34,048-INFO-Authentication for user: end.device@example.com
+2026-01-30 06:50:51,818-INFO-Authentication for user: end.device@example.com
+2026-01-30 06:53:33,235-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 07:07:41,878-INFO-Authentication for user: end.device@example.com
+2026-01-30 07:09:55,720-INFO-user register ok yass@gmail.com
+2026-01-30 07:10:16,942-INFO-Authentication for user: yass@gmail.com
+2026-01-30 07:43:38,698-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:04:00,474-INFO-Authentication for user: end.device@example.com
+2026-01-30 16:04:33,730-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:10:13,991-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:12:26,657-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:23:11,813-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:31:11,264-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:31:35,458-INFO-Authentication for user: end.device@example.com
+2026-01-30 16:32:18,985-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:37:54,066-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 16:42:11,275-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 17:23:51,000-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 17:29:18,622-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 17:46:38,812-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 18:55:53,543-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 19:10:19,769-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 19:11:39,383-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 19:27:57,672-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 19:48:06,914-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 20:02:56,858-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 20:04:21,607-INFO-user register ok yassirho@gmail.com
+2026-01-30 20:04:38,870-INFO-Authentication for user: yassirho@gmail.com
+2026-01-30 20:37:37,345-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 20:38:51,141-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 21:38:58,374-INFO-Authentication for user: gateway.user@example.com
+2026-01-30 22:39:06,105-INFO-Authentication for user: gateway.user@example.com
+2026-01-31 03:03:41,797-INFO-Authentication for user: end.device@example.com
+2026-01-31 03:04:41,341-INFO-Authentication for user: gateway.user@example.com
+2026-01-31 18:47:48,190-INFO-Authentication for user: gateway.user@example.com
+2026-02-02 12:51:28,399-INFO-Authentication for user: end.device@example.com
+2026-02-02 12:52:05,997-INFO-Authentication for user: gateway.user@example.com

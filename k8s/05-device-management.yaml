@@ -1,0 +1,60 @@
+# Device-management microservice (PostgreSQL db_devices, RabbitMQ)
+# Image: build from Microservices/device-management and tag as device-management:latest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: device-management
+  namespace: monitoring-iot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: device-management
+  template:
+    metadata:
+      labels:
+        app: device-management
+    spec:
+      containers:
+        - name: device-management
+          image: device-management:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8001
+          env:
+            - name: USER_DB
+              value: admin
+            - name: PASSWORD_DB
+              value: "1234"
+            - name: NAME_DB
+              value: db_devices
+            - name: SERVER_DB
+              value: postgres
+            - name: RABBITMQ_HOST
+              value: rabbitmq
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_EXCHANGE
+              value: device_events
+            - name: RABBITMQ_QUEUE
+              value: monitoring_queue
+            - name: SIGNING_SERVICE_URL
+              value: http://signing:8000
+            - name: REDIS_HOST
+              value: redis
+            - name: REDIS_PORT
+              value: "6379"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: device-management
+  namespace: monitoring-iot
+spec:
+  selector:
+    app: device-management
+  ports:
+    - port: 8001
+      targetPort: 8001
+      name: http

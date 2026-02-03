@@ -1,0 +1,59 @@
+# Tests API via Nginx Gateway (port 8080)
+# Lancer d'abord : docker-compose up -d
+# Puis utiliser ces requêtes (base URL = http://localhost:8080)
+
+### Health - Infos gateway
+GET http://localhost:8080/
+Accept: application/json
+
+### --- Signing (auth) via gateway ---
+### Register
+POST http://localhost:8080/users/add
+Content-Type: application/json
+
+{
+  "email": "gateway.user@example.com",
+  "password": "password123"
+}
+
+ GET http://localhost:8080/devices/
+
+### Login (le token sera capturé automatiquement)
+# @name login
+POST http://localhost:8080/users/auth
+Content-Type: application/json
+
+{
+  "email": "gateway.user@example.com",
+  "password": "password123"
+}
+
+### Token actuel (remplacer si nécessaire après un nouveau login)
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJnYXRld2F5LnVzZXJAZXhhbXBsZS5jb20iLCJyb2xlIjpmYWxzZSwiZXhwIjoxNzY5NjM3NjIxLCJpYXQiOjE3Njk2MzU4MjF9.UvY_Nx5oaEIqLOhDbsIeuCM1vRfXs9nRJo2QJdC4fk0
+
+### --- Device Management via gateway ---
+### Liste des devices
+GET http://localhost:8080/devices/
+Authorization: Bearer {{token}}
+
+### Créer un nouveau device
+POST http://localhost:8080/devices/
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "device_id": "device_001",
+  "name": "Temperature Sensor 1",
+  "device_type": "sensor",
+  "status": "online",
+  "location": "Room A",
+  "temperature": 25.5
+}
+
+### Obtenir un device par ID
+GET http://localhost:8080/devices/device_001
+Authorization: Bearer {{token}}
+
+### --- Monitoring via gateway ---
+### Données monitoring (pas d'auth)
+GET http://localhost:8080/monitoring/data

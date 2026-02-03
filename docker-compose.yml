@@ -1,0 +1,175 @@
+services:
+  signing:
+    build:
+      context: ./Microservices/signing
+      dockerfile: Dockerfile
+    container_name: signing-ms-2025
+    environment:
+      - USER_DB=admin
+      - PASSWORD_DB=1234
+      - NAME_DB=db_auth
+      - SERVER_DB=postgres
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./Microservices/signing/logs:/app/logs
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - monitoring-net
+
+  device-management:
+    build:
+      context: ./Microservices/device-management
+      dockerfile: Dockerfile
+    container_name: device-ms-2025
+    environment:
+      - USER_DB=admin
+      - PASSWORD_DB=1234
+      - NAME_DB=db_devices
+      - SERVER_DB=postgres
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_EXCHANGE=device_events
+      - RABBITMQ_QUEUE=monitoring_queue
+      - SIGNING_SERVICE_URL=http://signing:8000
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "8001:8001"
+    volumes:
+      - ./Microservices/device-management/logs:/app/logs
+    depends_on:
+      - postgres
+      - rabbitmq
+      - redis
+    networks:
+      - monitoring-net
+
+  monitoring:
+    build:
+      context: ./Microservices/monitoring
+      dockerfile: Dockerfile
+    container_name: monitoring-ms-2025
+    environment:
+      - MONGO_HOST=mongodb
+      - MONGO_PORT=27017
+      - MONGO_DB=monitoring_db
+      - RABBITMQ_HOST=rabbitmq
+      - RABBITMQ_PORT=5672
+      - RABBITMQ_EXCHANGE=device_events
+      - RABBITMQ_QUEUE=monitoring_queue
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./Microservices/monitoring/logs:/app/logs
+    depends_on:
+      - mongodb
+      - rabbitmq
+    networks:
+      - monitoring-net
+
+  postgres:
+    image: postgres:14
+    container_name: postgres
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    ports:
+      - "15432:5432"   # 5432 bloqué par Windows → localhost:15432
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - monitoring-net
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "56720:5672"   # 5672 bloqué par Windows → localhost:56720
+      - "15672:15672"
+    networks:
+      - monitoring-net
+
+  redis:
+    image: redis:7-alpine
+    container_name: redis-2025
+    ports:
+      - "6379:6379"
+    networks:
+      - monitoring-net
+
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - monitoring-net
+
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-gateway
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - signing
+      - device-management
+      - monitoring
+    networks:
+      - monitoring-net
+
+  # Node Exporter : métriques machine (CPU, RAM, disque, réseau) – comme l’ancien projet / dashboard "Node Exporter Full"
+  node-exporter:
+    image: prom/node-exporter:v1.7.0
+    container_name: node-exporter-2025
+    ports:
+      - "9100:9100"
+    networks:
+      - monitoring-net
+    restart: unless-stopped
+
+  # Observabilité (ne modifie pas la logique métier – Météo, Devices, Monitoring inchangés)
+  prometheus:
+    image: prom/prometheus:v2.47.0
+    container_name: prometheus-2025
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    networks:
+      - monitoring-net
+
+  grafana:
+    image: grafana/grafana:10.2.0
+    container_name: grafana-2025
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_SERVER_ROOT_URL=http://localhost:3000
+    networks:
+      - monitoring-net
+
+volumes:
+  postgres_data:
+  mongo_data:
+
+networks:
+  monitoring-net:
+    driver: bridge
+

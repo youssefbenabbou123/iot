@@ -1,0 +1,52 @@
+# Monitoring microservice (MongoDB, RabbitMQ)
+# Image: build from Microservices/monitoring and tag as monitoring:latest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monitoring
+  namespace: monitoring-iot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monitoring
+  template:
+    metadata:
+      labels:
+        app: monitoring
+    spec:
+      containers:
+        - name: monitoring
+          image: monitoring:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8002
+          env:
+            - name: MONGO_HOST
+              value: mongodb
+            - name: MONGO_PORT
+              value: "27017"
+            - name: MONGO_DB
+              value: monitoring_db
+            - name: RABBITMQ_HOST
+              value: rabbitmq
+            - name: RABBITMQ_PORT
+              value: "5672"
+            - name: RABBITMQ_EXCHANGE
+              value: device_events
+            - name: RABBITMQ_QUEUE
+              value: monitoring_queue
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: monitoring
+  namespace: monitoring-iot
+spec:
+  selector:
+    app: monitoring
+  ports:
+    - port: 8002
+      targetPort: 8002
+      name: http

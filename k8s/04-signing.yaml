@@ -1,0 +1,50 @@
+# Signing microservice - auth (PostgreSQL db_auth)
+# Image: build from Microservices/signing and tag as signing:latest
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: signing
+  namespace: monitoring-iot
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: signing
+  template:
+    metadata:
+      labels:
+        app: signing
+    spec:
+      containers:
+        - name: signing
+          image: signing:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8000
+          env:
+            - name: USER_DB
+              value: admin
+            - name: PASSWORD_DB
+              value: "1234"
+            - name: NAME_DB
+              value: db_auth
+            - name: SERVER_DB
+              value: postgres
+            - name: REDIS_HOST
+              value: redis
+            - name: REDIS_PORT
+              value: "6379"
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: signing
+  namespace: monitoring-iot
+spec:
+  selector:
+    app: signing
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: http

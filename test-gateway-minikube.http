@@ -1,0 +1,47 @@
+# Tests API via Gateway Kubernetes (Minikube)
+# 1. Lancer : minikube service nginx -n monitoring-iot --url
+# 2. Remplacer 34622 par le port affiché (ex: 34622)
+# 3. Garder le terminal ouvert pendant les tests
+# 4. Cliquer sur "Send Request" au-dessus de chaque bloc
+
+@baseUrl = http://127.0.0.1:34622
+
+### Health - Infos gateway
+GET {{baseUrl}}/
+Accept: application/json
+
+### --- Signing (auth) ---
+### 1. Inscription - Ajouter un nouvel utilisateur (change email/password si besoin)
+POST {{baseUrl}}/users/add
+Content-Type: application/json
+
+{
+  "email": "nouveau@example.com",
+  "password": "password123"
+}
+
+### 2. Connexion - Authentification (récupère le token JWT)
+# @name login
+POST {{baseUrl}}/users/auth
+Content-Type: application/json
+
+{
+  "email": "nouveau@example.com",
+  "password": "password123"
+}
+
+### --- Device Management (avec token) ---
+### Après login, copie le token de la réponse JSON et colle-le entre les guillemets
+@token = votre_token_ici 
+
+### Liste des devices
+GET {{baseUrl}}/devices/
+Authorization: Bearer {{token}}
+
+### --- Monitoring ---
+### Données monitoring (pas d'auth)
+GET {{baseUrl}}/monitoring/data
+
+### --- Swagger (ouvrir dans le navigateur) ---
+# {{baseUrl}}/docs-devices
+# {{baseUrl}}/docs-signing
